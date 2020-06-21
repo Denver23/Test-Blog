@@ -1,10 +1,11 @@
-import {CommentType, GetActionsTypes, PostType} from "../types/types";
+import {CommentType, GetActionsTypes, PostType, RetrievePostType} from "../types/types";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "./reducers";
 import {commentApi, postsApi} from "../api/api";
 
 const ADD_COMMENT = 'ADD_COMMENT';
 const LOAD_POST = 'LOAD_POST';
+const UPDATE_POST = 'UPDATE_POST';
 
 let initialState = {
     id: null as null | number,
@@ -27,6 +28,11 @@ const postReducer = (state = initialState, action: GetActionsTypes<typeof postRe
                 ...state,
                 ...action.data
             }
+        case UPDATE_POST:
+            return {
+                ...state,
+                ...action.data
+            }
         default:
             return {...state}
     }
@@ -34,7 +40,8 @@ const postReducer = (state = initialState, action: GetActionsTypes<typeof postRe
 
 export const postReducerActions = {
     addComment: (comment: CommentType) => ({type: ADD_COMMENT, data: comment} as const),
-    loadPost: (post) => ({type: LOAD_POST, data: post} as const)
+    loadPost: (post: RetrievePostType) => ({type: LOAD_POST, data: post} as const),
+    updatePost: (post: RetrievePostType) => ({type: UPDATE_POST, data: post} as const)
 }
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, GetActionsTypes<typeof postReducerActions>>
@@ -51,6 +58,14 @@ export const loadPostThunk = (postId): ThunkType => async (dispatch) => {
 
     if(response.data) {
         dispatch(postReducerActions.loadPost(response.data))
+    }
+}
+
+export const updatePostThunk = (postId, title, body): ThunkType => async (dispatch) => {
+    let response = await postsApi.updatePost(postId, title, body);
+
+    if(response.data) {
+        dispatch(postReducerActions.updatePost(response.data))
     }
 }
 

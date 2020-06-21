@@ -84,6 +84,11 @@ export const PostStyle = styled.li`
         color: #000;
         text-decoration: none;
     }
+    &:hover {
+        .delete-button {
+            opacity: 1;
+        }
+    }
     
     &:after {
         display: block;
@@ -93,6 +98,12 @@ export const PostStyle = styled.li`
         background-color: #ccc;
         position: absolute;
         bottom: 0;
+    }
+    .delete-button {
+        position: absolute;
+        right: 0;
+        opacity: 0;
+        transition: opacity .3s;
     }
 `;
 
@@ -129,7 +140,6 @@ export const Footer = styled.footer`
 export const PostTitle = styled.h2`
     color: #888;
     font-weight: 500;
-    
 `;
 
 export const PostBody = styled.div`

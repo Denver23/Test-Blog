@@ -4,6 +4,7 @@ import {NextPage} from "next";
 import * as React from "react";
 import Layout from "../components/Layout";
 import {NewPostForm} from "../components/styles";
+import {addPostThunk} from "../redux/latestPostsReducer";
 
 type PropsType = {
 
@@ -11,12 +12,16 @@ type PropsType = {
 
 const NewPost: NextPage = () => {
 
-    let [postValue, changePostValue] = useState('')
-    let [titleValue, changeTitleValue] = useState('')
+    const dispatch = useDispatch()
+
+    let [postValue, changePostValue] = useState<string>('');
+    let [titleValue, changeTitleValue] = useState<string>('');
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(postValue);
+        dispatch(addPostThunk(titleValue, postValue))
+        changePostValue('')
+        changeTitleValue('')
     }
 
     return (
