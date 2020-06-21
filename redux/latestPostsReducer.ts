@@ -8,7 +8,7 @@ let initialState = {
 
 type InitialStateType = typeof initialState
 
-const postsReducer = (state = initialState, action: GetActionsTypes<typeof postsReducerActions>): InitialStateType => {
+const latestPostsReducer = (state = initialState, action: GetActionsTypes<typeof postsReducerActions>): InitialStateType => {
     switch (action.type) {
         case LOAD_POSTS:
             return {
@@ -24,4 +24,4 @@ export const postsReducerActions = {
     initializePosts: (posts: Array<PostType>) => ({type: LOAD_POSTS, data: posts} as const)
 }
 
-export default postsReducer;
+export default latestPostsReducer;

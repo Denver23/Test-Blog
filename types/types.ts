@@ -11,10 +11,10 @@ export type RetrievePostType = {
     id: number,
     title: string,
     body: string,
-    comments: Array<Comment>
+    comments: Array<CommentType>
 }
 
-export type Comment = {
+export type CommentType = {
     id: number,
     postId: number,
     body: string

@@ -10,11 +10,10 @@ type PropsType = {
 const PostShortcut: NextPage<PropsType> = ({post}) => {
     return (
         <PostStyle>
-            <Link href={`/posts/${post.id}`}><a>
-                <div>{post.id}</div>
+            <Link href={`/posts/${post.id}`}><a className={'post-link'}>
                 <div>{post.title}</div>
-                <div>{post.body}</div>
             </a></Link>
+            <div>{post.body.length > 140 ? `${post.body.slice(0, 140)}...` : post.body}</div>
         </PostStyle>
     )
 }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {PostType, RetrievePostType} from "../types/types";
+import {CommentType, PostType, RetrievePostType} from "../types/types";
 
 export const baseURL = 'https://simple-blog-api.crew.red/';
 
@@ -13,6 +13,15 @@ export const postsApi = {
     },
     retrievePost(id) {
         return instance.get<RetrievePostType>(`/posts/${id}?_embed=comments`);
+    },
+    addPost(title, body) {
+        return instance.post<RetrievePostType>(`/posts`, {title, body})
+    }
+}
+
+export const commentApi = {
+    addComment(postId, body) {
+        return instance.post<CommentType>('/comments', {postId, body});
     }
 }
 

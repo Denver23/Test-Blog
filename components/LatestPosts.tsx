@@ -2,7 +2,6 @@ import {NextPage} from "next";
 import {PostType} from "../types/types";
 import PostShortcut from "./PostShortcut";
 import Head from "next/head";
-import styled from 'styled-components'
 import {PostsList} from "./styles";
 
 type PropsType = {

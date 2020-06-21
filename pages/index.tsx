@@ -1,11 +1,9 @@
 import {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
-import Link from 'next/link'
-import {startClock} from '../actions'
 import {postsApi} from "../api/api";
 import {NextPage} from "next";
 import {PostType} from '../types/types';
-import {postsReducerActions} from "../redux/postsReducer";
+import {postsReducerActions} from "../redux/latestPostsReducer";
 import * as React from "react";
 import LatestPosts from "../components/LatestPosts";
 import Layout from "../components/Layout";
