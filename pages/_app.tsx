@@ -1,13 +1,20 @@
-import { Provider } from 'react-redux'
-import { useStore } from '../redux/store'
+import {Provider} from 'react-redux'
+import {useStore} from '../redux/store'
+import { ThemeProvider } from 'styled-components'
 import '../styles/global.css'
 
-export default function App({ Component, pageProps }) {
-  const store = useStore(pageProps.initialReduxState)
+const theme = {
+    primary: 'green',
+}
 
-  return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
-  )
+export default function App({Component, pageProps}) {
+    const store = useStore(pageProps.initialReduxState)
+
+    return (
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
+                <Component {...pageProps} />
+            </ThemeProvider>
+        </Provider>
+)
 }
